@@ -7,7 +7,7 @@ CREATE TABLE user_profile
     first_name TEXT,
     last_name  TEXT,
     patronymic TEXT,
-    phone      TEXT UNIQUE,
+    phone      TEXT,
     info       TEXT,
     role       TEXT
 );
@@ -15,14 +15,14 @@ CREATE TABLE user_profile
 CREATE TABLE book
 (
     id          SERIAL PRIMARY KEY,
-    name        TEXT UNIQUE,
+    name        TEXT,
     publisher   TEXT,
     authors     TEXT,
     description TEXT,
     sell_price  INTEGER
 );
 
-CREATE TABLE "order"
+CREATE TABLE orders
 (
     id          	SERIAL	PRIMARY KEY,
     id_book     	INTEGER   NOT NULL REFERENCES book (id),
