@@ -29,7 +29,7 @@ public class BookController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Book> updateBook(@PathVariable("id") Long id, @RequestBody final Book book) {
+    public ResponseEntity<Book> updateBook(@PathVariable("id") Integer id, @RequestBody final Book book) {
         Optional<Book> oldBook = Optional.ofNullable(bookRepository.findById(id).orElseThrow(() ->
                 new ResponseStatusException(HttpStatus.NOT_FOUND, "No such Book")));
         if (oldBook.isPresent()) {
@@ -54,14 +54,14 @@ public class BookController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Book> getBookById(@PathVariable("id") Long id) {
+    public ResponseEntity<Book> getBookById(@PathVariable("id") Integer id) {
         Optional<Book> book = Optional.ofNullable(bookRepository.findById(id).orElseThrow(() ->
                 new ResponseStatusException(HttpStatus.NOT_FOUND, "No such Book")));
         return new ResponseEntity<>(book.get(), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Book> deleteBookById(@PathVariable("id") Long id) {
+    public ResponseEntity<Book> deleteBookById(@PathVariable("id") Integer id) {
         Optional<Book> book = Optional.ofNullable(bookRepository.findById(id).orElseThrow(() ->
                 new ResponseStatusException(HttpStatus.NOT_FOUND, "No such Book")));
         bookRepository.deleteById(id);
